@@ -1,0 +1,152 @@
+<html>
+  <style>
+    body {
+      margin: 0px;
+      font-family: "IBM Plex Sans", sans-serif;
+      background-color: #f5f7fb;
+    }
+    .header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #ffffff;
+      padding: 10px 24px;
+    }
+    .pokemon-name {
+      font-size: 21px;
+      border-bottom: 2px solid;
+      padding-bottom: 4px;
+      color: #001d4a;
+    }
+    .general-infos {
+      display: flex;
+      flex-direction: column;
+      border-left: 1px solid #ffcd00;
+      color: #0e2f66;
+      padding-left: 4px;
+      font-size: 9px;
+    }
+    .info {
+      margin-bottom: 2px;
+    }
+    .attack-card {
+      margin: 10px 10px 0px 10px;
+      padding-bottom: 10px;
+      border-radius: 6px;
+      background-color: #ffffff;
+      color: #001d4a;
+    }
+    .attack-header {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+      background-color: #dde8fb;
+      padding: 4px;
+      color: #332900;
+    }
+    .attack-content {
+      margin: 12px 0px 6px 0px;
+    }
+    .attack-name {
+      margin-left: 4px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .attack-properties {
+      display: flex;
+      flex-direction: column;
+      row-gap: 8px;
+      font-size: 12px;
+      margin: 4px 12px;
+    }
+    .attack-description {
+      font-size: 10px;
+      text-align: center;
+    }
+    .attack-type-card {
+      text-align: center;
+    }
+    .water-card {
+      border-radius: 5px;
+      text-align: center;
+      padding: 4px;
+      background-color: #1753e3;
+      color: #ffffff;
+    }
+    .normal-card {
+      border-radius: 5px;
+      text-align: center;
+      padding: 4px;
+      background-color: #79794e;
+      color: #ffffff;
+    }
+    .steel-card {
+      border-radius: 5px;
+      text-align: center;
+      padding: 4px;
+      background-color: #7a7aa7;
+      color: #ffffff;
+    }
+    .attack-power {
+      background: black;
+    }
+  </style>
+  <head>
+    <title>Welcome!</title>
+  </head>
+  <body>
+    <div class="header">
+      <div class="pokemon-name">${name}</div>
+      <div class="general-infos">
+        <div class="info">numéro : ${numero}</div>
+        <div class="info">type : ${type}</div>
+        <div class="info">évolution : ${evolution}</div>
+      </div>
+    </div>
+    <#list attacks as attack>
+      <div class="attack-card">
+        <div class="attack-header">
+          <div class="attack-name">${attack.name}</div>
+          <div class="attack-properties">
+            <div class="attack-type-card">
+              <#switch attack.type>
+                <#case "eau">
+                  <div class="water-card">
+                    <div class="attack-type">
+                      ${attack.type}
+                    </div>
+                  </div>
+                <#break>
+                <#case "normal">
+                <div class="normal-card">
+                  <div class="attack-type">
+                    ${attack.type}
+                  </div>
+                </div>
+                <#break>                
+                <#case "acier">
+                  <div class="steel-card">
+                    <div class="attack-type">
+                    ${attack.type}
+                    </div>
+                  </div>
+                <#break>
+              </#switch>
+            </div>
+            <div class="attack-category">
+              ${attack.category}
+            </div> 
+            <div class="attack-power">
+              ${attack.power}
+            </div>
+          </div>
+        </div>
+        <div class="attack-content"><div class="attack-description">${attack.description}</div> </div>
+      </div>
+    </#list>
+  </body>
+</html>

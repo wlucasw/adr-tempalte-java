@@ -1,0 +1,932 @@
+<html lang="fr-FR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Test page</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100;200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100;200;300;400;500;600;700&display=swap");
+
+      @page {
+        size: A4 portrait;
+      }
+
+      html,
+      body {
+        margin: 0px;
+        font-family: "IBM Plex Sans", sans-serif;
+        background-color: #f5f7fb;
+        -webkit-print-color-adjust: exact;
+        -webkit-filter: opacity(1);
+      }
+
+      h2,
+      h3,
+      p,
+      ul,
+      li {
+        margin: 0px;
+        padding: 0px;
+      }
+
+      li {
+        margin-left: 18px;
+        margin-bottom: 2px;
+        font-size: 8px;
+        font-weight: 400;
+      }
+
+      li span {
+        position: relative;
+        left: -6px;
+      }
+
+      .header {
+        display: flex;
+        flex: 1;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: 100vw;
+        height: 66px;
+        padding: 10px 24px;
+        background-color: #ffffff;
+        page-break-before: always;
+      }
+
+      .title {
+        display: flex;
+        justify-content: flex-start;
+        font-stretch: condensed;
+        font-size: 21px;
+        margin: 0px 0px 0px 0px;
+        color: #0e2f66;
+        padding-bottom: 4px;
+        border-bottom: 2px solid #ffcd00;
+        width: fit-content;
+      }
+
+      .imc-note {
+        font-size: 21px;
+        font-weight: bold;
+        margin-left: 4px;
+        font-stretch: condensed;
+        font-weight: 700;
+      }
+
+      .evalution-informations {
+        display: flex;
+        flex-direction: column;
+        border-left: 1px solid #ffcd00;
+        color: #0e2f66;
+        padding-left: 4px;
+        font-size: 9px;
+      }
+
+      .evaluation-detail {
+        margin-bottom: 2px;
+      }
+
+      .engagement {
+        margin: 10px 10px 0px 10px;
+        padding: 12px;
+        border-radius: 6px;
+        background-color: #ffffff;
+        color: #001d4a;
+      }
+
+      .engagement-header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      .engagement-labels {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .engagement-title {
+        font-size: 15px;
+        font-weight: bold;
+      }
+
+      .engagement-subtitle {
+        font-size: 9px;
+        margin-top: 0px;
+      }
+
+      .engagement-notes-with-average {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+      }
+
+      .engagement-notes {
+        display: flex;
+        flex-direction: row;
+      }
+
+      .note {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-left: 4px;
+        color: #89847e;
+      }
+
+      .active-note-label {
+        margin-bottom: 1px;
+        margin-top: 3px;
+        font-size: 13px;
+        font-weight: bold;
+        font-stretch: condensed;
+      }
+
+      .note-label {
+        margin: 3px 0px;
+        font-size: 11px;
+        font-weight: 200;
+        font-stretch: condensed;
+      }
+
+      .active-note-background {
+        background-color: #f5f7fb;
+      }
+
+      .note-e-box {
+        width: 27px;
+        height: 5px;
+        background: #f19681;
+        border-radius: 1px;
+      }
+
+      .note-d-box {
+        width: 27px;
+        height: 5px;
+        background: #f9ba58;
+        border-radius: 1px;
+      }
+
+      .note-c-box {
+        width: 27px;
+        height: 5px;
+        background: #ffcd00;
+        border-radius: 1px;
+      }
+
+      .note-b-box {
+        width: 27px;
+        height: 5px;
+        background: #5bddae;
+        border-radius: 1px;
+      }
+
+      .note-a-box {
+        width: 27px;
+        height: 5px;
+        background: #008460;
+        border-radius: 1px;
+      }
+
+      .note-dot {
+        position: relative;
+      }
+
+      .note-average-text {
+        margin-top: 4px;
+        font-size: 7px;
+        font-weight: 400;
+        color: #051631;
+      }
+
+      .criteria {
+        margin: 12px 0px 6px 0px;
+      }
+
+      .criteria-header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        background-color: #dde8fb;
+        padding: 4px;
+      }
+
+      .criteria-title-and-icon {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+
+      .criteria-title {
+        margin-left: 4px;
+        font-size: 8px;
+        font-weight: bold;
+        color: #332900;
+      }
+
+      .criteria-scale-with-average {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        position: relative;
+        margin-right: 6px;
+        top: -5px;
+      }
+
+      .criteria-scale {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: 84px;
+        height: 3px;
+        border-radius: 5px;
+        margin: 0px 1px;
+        background-color: #ffffff;
+      }
+
+      .criteria-scale-result {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        height: 3px;
+        border-radius: 5px;
+        position: absolute;
+        background-color: #395179;
+      }
+
+      .criteria-scale-dot {
+        position: absolute;
+        display: block;
+        right: -7px;
+        top: -5px;
+      }
+
+      .criteria-average {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: absolute;
+        top: 5px;
+        right: 0%;
+      }
+
+      .criteria-average-text {
+        position: absolute;
+        top: 0;
+        width: 33px;
+        font-size: 4px;
+        text-align: center;
+        color: #071a39;
+      }
+
+      .criteria-content {
+        display: flex;
+        flex-direction: row;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+        padding: 8px;
+        box-shadow: 0px 4px 16px rgba(1, 11, 27, 0.1);
+      }
+
+      .criteria-strong-points {
+        display: flex;
+        flex-direction: column;
+        width: 40%;
+        flex-shrink: 0;
+      }
+
+      .criteria-strong-points-title {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        font-size: 8px;
+        font-weight: 700;
+        color: #001d4a;
+        margin-bottom: 4px;
+      }
+
+      .criteria-content-icons {
+        margin-right: 4px;
+      }
+
+      .criteria-separator {
+        width: 1px;
+        background-color: #dde8fb;
+        margin: 0px 8px;
+      }
+
+      .criteria-improvements {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .criteria-improvements-title {
+        display: flex;
+        align-items: center;
+        margin-bottom: 4px;
+        font-size: 8px;
+        font-weight: 700;
+        color: #001d4a;
+      }
+
+      .exposure {
+        border-radius: 6px;
+        margin: 10px 10px 3px 10px;
+        padding: 12px;
+        background-color: #ffffff;
+      }
+
+      .exposure-title {
+        font-size: 15px;
+        font-stretch: condensed;
+        font-weight: bold;
+      }
+
+      .exposure-subtitle {
+        font-size: 8px;
+      }
+
+      .exposure-header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+      }
+
+      .exposure-header-labels {
+        display: flex;
+        flex-direction: column;
+        color: #332900;
+      }
+
+      .exposure-notes {
+        display: flex;
+        flex-direction: row;
+      }
+
+      .exposure-note {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-left: 4px;
+        color: #89847e;
+      }
+
+      .exposure-note-label {
+        margin-bottom: 2px;
+        margin-top: 2px;
+        font-size: 11px;
+        font-weight: 200;
+        font-stretch: condensed;
+      }
+
+      .exposure-active-note-background {
+        background-color: #fff0b2;
+      }
+
+      .active-exposure-note-label {
+        margin-top: 1px;
+        font-size: 13px;
+        font-weight: bold;
+        font-stretch: condensed;
+      }
+
+      .note-1-box {
+        width: 27px;
+        height: 5px;
+        background: #008460;
+        border-radius: 1px;
+      }
+
+      .note-2-box {
+        width: 27px;
+        height: 5px;
+        background: #5bddae;
+        border-radius: 1px;
+      }
+
+      .note-3-box {
+        width: 27px;
+        height: 5px;
+        background: #ffcd00;
+        border-radius: 1px;
+      }
+
+      .note-4-box {
+        width: 27px;
+        height: 5px;
+        background: #f9ba58;
+        border-radius: 1px;
+      }
+
+      .note-5-box {
+        width: 27px;
+        height: 5px;
+        background: #f19681;
+        border-radius: 1px;
+      }
+
+      .exposure-subparts {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-self: center;
+        width: calc(100% + 16px);
+        position: relative;
+        right: 8px;
+      }
+
+      .exposure-subpart-card {
+        display: flex;
+        flex-direction: column;
+        padding: 8px;
+        margin: 0px 8px;
+        border-radius: 8px;
+        width: 185px;
+        -webkit-appearance: none;
+        -webkit-box-shadow: 0px 4px 16px rgba(1, 11, 27, 0.1);
+        box-shadow: 0px 4px 16px rgba(1, 11, 27, 0.1);
+      }
+
+      .exposure-subpart-card-header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+
+      .exposure-icon {
+        flex-shrink: 0;
+      }
+
+      .exposure-subpart-title {
+        margin-left: 4px;
+        font-size: 8px;
+        font-weight: bold;
+        color: #332900;
+      }
+
+      .exposure-score {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin-top: 6px;
+      }
+
+      .exposure-score-scale {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        height: 3px;
+        border-radius: 5px;
+        margin: 0px 1px;
+        background-color: #f3f3f3;
+      }
+
+      .exposure-score-scale-result {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        height: 3px;
+        border-radius: 5px;
+      }
+
+      .exposure-score-scale-dot {
+        position: relative;
+        left: 6px;
+      }
+
+      .footer {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        height: 60px;
+        background-color: #ffffff;
+      }
+
+      .bpi-logo {
+        margin-left: 40px;
+      }
+
+      .footer-text {
+        font-size: 5px;
+        font-weight: 400;
+        text-align: center;
+        margin: 10px 86px 10px 32px;
+        color: #395179;
+      }
+
+      @media print {
+        .page-section {
+          /* Specify physical size of page, margins may vary by browser */
+
+          height: 100%;
+          /* IE default margins are .75in */
+          position: relative;
+        }
+
+        .footer {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          align-items: center;
+          position: absolute;
+          bottom: 0;
+          width: 100%;
+          height: 60px;
+          background-color: #ffffff;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div th:class="${shouldDisplayReportOnTwoPages} ? 'page-section'">
+      <div class="header">
+        <div class="title">
+          <p>Bilan Financier :</p>
+          <p class="imc-note">
+            <td th:text="${globalRatings.imcRatings}"></td>
+          </p>
+        </div>
+        <div class="evalution-informations">
+          <p class="evaluation-detail">
+            Entreprise : <b> <td th:text="${companyName}"></td> </b>
+          </p>
+          <p class="evaluation-detail">
+            SIREN : <b> <td th:text="${siren}"></td> </b>
+          </p>
+          <p class="evaluation-detail">
+            Secteur : <b> <td th:text="${sector}"></td></b>
+          </p>
+          <p class="evaluation-last-detail">
+            Date : <b> <td th:text="${completionDate}"></td> </b>
+          </p>
+        </div>
+      </div>
+      <div class="engagement">
+        <div class="engagement-header">
+          <div class="engagement-labels">
+            <h3 class="engagement-title">Engagement de l’entreprise</h3>
+            <p class="engagement-subtitle">
+              Cette rubrique présente pour chacune des thématiques les points
+              forts et axes d’améliorations de l’entreprise établis suite aux
+              échanges.
+            </p>
+          </div>
+          <div class="engagement-notes-with-average">
+            <div class="engagement-notes">
+              <th:block th:switch="${globalRatings.commitmentRatingsBase}">
+                <div th:case="A">
+                  <div class="note active-note-background">
+                    <p class="active-note-label">
+                      <td th:text="${globalRatings.commitmentRatings}"></td>
+                    </p>
+                    <div class="note-a-box">
+                      <svg
+                        class="note-dot"
+                        th:styleappend="'A++' == ${globalRatings.commitmentRatings} ? 'left: 0%' : ('A+' == ${globalRatings.commitmentRatings} ? 'left: calc(50% - 6px)' : 'left: calc(100% - 12px)' )"
+                        height="12"
+                        width="12"
+                      >
+                        <circle
+                          cx="6"
+                          cy="6"
+                          r="4"
+                          stroke="#FFFFFF"
+                          stroke-width="1.5"
+                          fill="#001D4A"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div th:case="*">
+                  <div class="note">
+                    <p class="note-label">A</p>
+                    <div class="note-a-box"></div>
+                  </div>
+                </div>
+              </th:block>
+              <th:block th:switch="${globalRatings.commitmentRatingsBase}">
+                <div th:case="B">
+                  <div class="note active-note-background">
+                    <p class="active-note-label">
+                      <td th:text="${globalRatings.commitmentRatings}"></td>
+                    </p>
+                    <div class="note-b-box">
+                      <svg
+                        class="note-dot"
+                        th:styleappend="'B++' == ${globalRatings.commitmentRatings} ? 'left: 0%' : ('B+' == ${globalRatings.commitmentRatings} ? 'left: calc(50% - 6px)' : 'left: calc(100% - 12px)' )"
+                        height="12"
+                        width="12"
+                      >
+                        <circle
+                          cx="6"
+                          cy="6"
+                          r="4"
+                          stroke="#FFFFFF"
+                          stroke-width="1.5"
+                          fill="#001D4A"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div th:case="*">
+                  <div class="note">
+                    <p class="note-label">B</p>
+                    <div class="note-b-box"></div>
+                  </div>
+                </div>
+              </th:block>
+              <th:block th:switch="${globalRatings.commitmentRatingsBase}">
+                <div th:case="C">
+                  <div class="note active-note-background">
+                    <p class="active-note-label">
+                      <td th:text="${globalRatings.commitmentRatings}"></td>
+                    </p>
+                    <div class="note-c-box">
+                      <svg
+                        class="note-dot"
+                        th:styleappend="'C++' == ${globalRatings.commitmentRatings} ? 'left: 0%' : ('C+' == ${globalRatings.commitmentRatings} ? 'left: calc(50% - 6px)' : 'left: calc(100% - 12px)' )"
+                        height="12"
+                        width="12"
+                      >
+                        <circle
+                          cx="6"
+                          cy="6"
+                          r="4"
+                          stroke="#FFFFFF"
+                          stroke-width="1.5"
+                          fill="#001D4A"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div th:case="*">
+                  <div class="note">
+                    <p class="note-label">C</p>
+                    <div class="note-c-box"></div>
+                  </div>
+                </div>
+              </th:block>
+
+              <th:block th:switch="${globalRatings.commitmentRatingsBase}">
+                <div th:case="D">
+                  <div class="note active-note-background">
+                    <p class="active-note-label">
+                      <td th:text="${globalRatings.commitmentRatings}"></td>
+                    </p>
+                    <div class="note-d-box">
+                      <svg
+                        class="note-dot"
+                        th:styleappend="'D++' == ${globalRatings.commitmentRatings} ? 'left: 0%' : ('D+' == ${globalRatings.commitmentRatings} ? 'left: calc(50% - 6px)' : 'left: calc(100% - 12px)' )"
+                        height="12"
+                        width="12"
+                      >
+                        <circle
+                          cx="6"
+                          cy="6"
+                          r="4"
+                          stroke="#FFFFFF"
+                          stroke-width="1.5"
+                          fill="#001D4A"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div th:case="*">
+                  <div class="note">
+                    <p class="note-label">D</p>
+                    <div class="note-d-box"></div>
+                  </div>
+                </div>
+              </th:block>
+              <th:block th:switch="${globalRatings.commitmentRatingsBase}">
+                <div th:case="E">
+                  <div class="note active-note-background">
+                    <p class="active-note-label">
+                      <td th:text="${globalRatings.commitmentRatings}"></td>
+                    </p>
+                    <div class="note-e-box">
+                      <svg
+                        class="note-dot"
+                        th:styleappend="'E++' == ${globalRatings.commitmentRatings} ? 'left: 0%' : ('E+' == ${globalRatings.commitmentRatings} ? 'left: calc(50% - 6px)' : 'left: calc(100% - 12px)' )"
+                        height="12"
+                        width="12"
+                      >
+                        <circle
+                          cx="6"
+                          cy="6"
+                          r="4"
+                          stroke="#FFFFFF"
+                          stroke-width="1.5"
+                          fill="#001D4A"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div th:case="*">
+                  <div class="note">
+                    <p class="note-label">E</p>
+                    <div class="note-e-box"></div>
+                  </div>
+                </div>
+              </th:block>
+            </div>
+            <p
+              th:if="${globalRatings.shouldDisplayAverage}"
+              class="note-average-text"
+            >
+              Moyenne du secteur :
+              <b
+                ><span
+                  th:text="${globalRatings.meanCommitmentRatingLabel}"
+                ></span
+              ></b>
+            </p>
+          </div>
+        </div>
+        <tr th:each="scope: ${commitmentScopes}">
+          <div class="criteria">
+            <div class="criteria-header">
+              <div class="criteria-title-and-icon">
+                <div class="criteria-icon"></div>
+                <p class="criteria-title">
+                  <td th:text="${scope.scopeName}"></td>
+                </p>
+              </div>
+              <div class="criteria-scale-with-average">
+                <div class="criteria-scale">
+                  <div
+                    class="criteria-scale-result"
+                    th:styleappend="
+        2 > ${scope.score} ? 'width: calc(' + ${scope.score} * 10 + '% + 2px - '+ 2 * ${scope.score} / 5 +'px) ;background-color: #F19681' : 
+          (4 > ${scope.score} ? 'width: calc(' + ${scope.score} * 10 + '% + 2px - '+ 2 * ${scope.score} / 5 +'px) ;background-color: #F9BA58' : 
+            (6 > ${scope.score} ? 'width: calc(' + ${scope.score} * 10 + '% + 2px - '+ 2 * ${scope.score} / 5 +'px) ;background-color: #FFCD00' : 
+              (8 > ${scope.score} ? 'width: calc(' + ${scope.score} * 10 + '% + 2px - '+ 2 * ${scope.score} / 5 +'px) ;background-color: #5BDDAE' : 
+                ('width: calc(' + ${scope.score} * 10 + '% + 2px - '+ 2 * ${scope.score} / 5 +'px) ;background-color: #00513B' )
+              )
+            )
+          )
+          "
+                  ></div>
+
+                  <div
+                    class="criteria-average"
+                    th:if="${globalRatings.shouldDisplayAverage}"
+                    th:styleappend="'right: calc(' + (10 - ${scope.sectorAverage}) * 10 + '% + 3px - '+ 3 * ${scope.score} / 5 +'px + 4px);'"
+                  >
+                    <div class="criteria-scale-dot">
+                      <svg height="3" width="3">
+                        <circle
+                          cx="1.5"
+                          cy="1.5"
+                          r="1.5"
+                          stroke-width="0"
+                          th:if="8 > ${scope.score}"
+                          fill="#0D2F66"
+                        />
+                        <circle
+                          cx="1.5"
+                          cy="1.5"
+                          r="1.5"
+                          stroke-width="0"
+                          th:unless="8 > ${scope.score}"
+                          fill="#FFFFFF"
+                        />
+                      </svg>
+                    </div>
+                    <p
+                      class="criteria-average-text"
+                      th:styleappend=" ${scope.sectorAverage} > 5 ? 'right: -7px;' : 'left: 4px;'"
+                    >
+                      Moyenne du secteur
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="criteria-content">
+              <div class="criteria-strong-points">
+                <div class="criteria-strong-points-title">
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 25 25"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M12.9902 8.99609V16.9961"
+                      stroke="#0D2F66"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M16.9902 12.9961H8.99023"
+                      stroke="#0D2F66"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M12.9902 21.9961V21.9961C8.01923 21.9961 3.99023 17.9671 3.99023 12.9961V12.9961C3.99023 8.02509 8.01923 3.99609 12.9902 3.99609V3.99609C17.9612 3.99609 21.9902 8.02509 21.9902 12.9961V12.9961C21.9902 17.9671 17.9612 21.9961 12.9902 21.9961Z"
+                      stroke="#0D2F66"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  <p>Points forts</p>
+                </div>
+                <ul>
+                  <div th:each="strengthText: ${scope.insights.strength}">
+                    <li>
+                      <span>
+                        <td th:text="${strengthText}"></td>
+                      </span>
+                    </li>
+                  </div>
+                </ul>
+              </div>
+              <div class="criteria-separator"></div>
+              <div class="criteria-improvements">
+                <div class="criteria-improvements-title">
+                  <div class="criteria-content-icons">
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 25 25"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <circle
+                        cx="12.99"
+                        cy="12.9961"
+                        r="9"
+                        stroke="#0D2F66"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M17.49 10.7461L13.552 14.6841L11.302 12.4341L8.48999 15.2461"
+                        stroke="#0D2F66"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M14.678 10.7461H17.49V13.5581"
+                        stroke="#0D2F66"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </div>
+                  <p>Axes d’amélioration</p>
+                </div>
+                <ul>
+                  <div
+                    th:each="improvementAxesText: ${scope.insights.improvementAxes}"
+                  >
+                    <li>
+                      <span>
+                        <td th:text="${improvementAxesText}"></td>
+                      </span>
+                    </li>
+                  </div>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </tr>
+      </div>
+    </div>
+  </body>
+</html>

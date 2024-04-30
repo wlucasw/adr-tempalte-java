@@ -1,0 +1,8 @@
+theodo/panier/Interface/DocumentParameter.class
+theodo/panier/presentation/rest/HelloWorldController.class
+theodo/panier/Strategy/Strategies.class
+theodo/panier/presentation/rest/DocumentDto.class
+theodo/panier/PanierApplication.class
+theodo/panier/Strategy/Thymeleaf/ThymeleafStrategy.class
+theodo/panier/Interface/Generator.class
+theodo/panier/Strategy/JSP/JSPStrategy.class

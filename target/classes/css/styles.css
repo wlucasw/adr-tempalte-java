@@ -1,0 +1,7 @@
+.block{
+    display: flex;
+    flex-direction: row;
+}
+.title{
+    color: #001d4a;
+}
